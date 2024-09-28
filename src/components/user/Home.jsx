@@ -65,7 +65,7 @@ const Home = () => {
   const searchByBrand = async () => {
     try {
       const { data } = await axios.get(
-        `https://amazon-devtown-backend.onrender.com/api/product/search/category/laptop`
+        `https://amazon-devtown-backend.onrender.com/api/product/search/brand/apple`
       );
       console.log(data);
       setApple(data.products);
