@@ -42,7 +42,7 @@ const Home = () => {
   const getProducts = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/product/list_products"
+        "https://amazon-devtown-backend.onrender.com/api/product/list_products"
       );
       setProducts(data.products);
       const filteredBestsellers = data.products.filter(
@@ -65,7 +65,7 @@ const Home = () => {
   const searchByBrand = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/api/product/search/category/laptop`
+        `https://amazon-devtown-backend.onrender.com/api/product/search/category/laptop`
       );
       console.log(data);
       setApple(data.products);
@@ -163,7 +163,7 @@ const Home = () => {
       <h1 className="text-3xl px-[5vw] mt-4">BestSeller on Amazon</h1>
       <div className="flex flex-wrap gap-5 px-[5vw] mt-2">
         {products &&
-          bestsellers.map((product) => (
+          bestsellers?.map((product) => (
             <div key={product._id}>
               <ProductCard product={product} />
             </div>
@@ -208,7 +208,7 @@ const Home = () => {
       <h1 className="text-3xl px-[5vw] mt-4">New Arrivals</h1>
       <div className="flex flex-wrap gap-5 px-[5vw] mt-2">
         {products &&
-          newProduct.map((product) => (
+          newProduct?.map((product) => (
             <div key={product._id}>
               <ProductCard product={product} />
             </div>
@@ -228,7 +228,7 @@ const Home = () => {
       <h1 className="text-3xl px-[5vw] mt-4">Experience the Power of Apple</h1>
       <div className="flex flex-wrap gap-3 px-[5vw] mt-2">
         {apple &&
-          apple.map((product) => (
+          apple?.map((product) => (
             <div key={product._id}>
               <ProductCard product={product} />
             </div>
