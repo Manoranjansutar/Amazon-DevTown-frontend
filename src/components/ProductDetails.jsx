@@ -22,7 +22,7 @@ const ProductDetails = () => {
 
   const searchedProductDetails = async (req, res) => {
     await axios
-      .get(`http://localhost:5000/api/product/list_single_product/${id}`)
+      .get(`https://amazon-devtown-backend.onrender.com/api/product/list_single_product/${id}`)
       .then((response) => {
         console.log(response.data.product);
         console.log(product);
