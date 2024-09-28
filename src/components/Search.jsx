@@ -36,7 +36,7 @@ console.log(keyword)
         else if (category) params.category = category;
         else if (brand) params.brand = brand;
   
-        const response = await axios.get('http://localhost:5000/api/product/search', { params });
+        const response = await axios.get('https://amazon-devtown-backend.onrender.com/api/product/search', { params });
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching search results:', error);
@@ -51,7 +51,7 @@ console.log(keyword)
   const productlowtohigh = async () => {
     try {
       await axios
-        .get("http://localhost:5000/api/product/price/sort/low_to_high")
+        .get("https://amazon-devtown-backend.onrender.com/api/product/price/sort/low_to_high")
         .then((response) => {
           console.log(response);
           setProducts(response.data.products);
@@ -64,7 +64,7 @@ console.log(keyword)
   const produchightolow = async () => {
     try {
       await axios
-        .get("http://localhost:5000/api/product/price/sort/high_to_low")
+        .get("https://amazon-devtown-backend.onrender.com/api/product/price/sort/high_to_low")
         .then((response) => {
           console.log(response);
           setProducts(response.data.products);
@@ -78,7 +78,7 @@ console.log(keyword)
     console.log(brand);
     try {
       await axios
-        .get(`http://localhost:5000/api/product/search/brand/${brand}`)
+        .get(`https://amazon-devtown-backend.onrender.com/api/product/search/brand/${brand}`)
         .then((response) => {
           console.log(response);
           setProducts(response.data.products);
@@ -92,7 +92,7 @@ console.log(keyword)
     console.log(category);
     try {
       await axios
-        .get(`http://localhost:5000/api/product/search/category/${category}`)
+        .get(`https://amazon-devtown-backend.onrender.com/api/product/search/category/${category}`)
         .then((response) => {
           console.log(response);
           setProducts(response.data.products);
@@ -105,7 +105,7 @@ console.log(keyword)
   const getProducts = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/product/list_products"
+        "https://amazon-devtown-backend.onrender.com/api/product/list_products"
       );
       console.log(data);
       setProducts(data.products);
