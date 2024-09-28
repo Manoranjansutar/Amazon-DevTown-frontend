@@ -19,39 +19,34 @@ const Search = () => {
   const [isOpen1, setIsOpen1] = React.useState(false);
   const [isOpen2, setIsOpen2] = React.useState(false);
 
-const {keyword} = useParams();
-console.log(keyword)
+  const { keyword } = useParams();
 
-
-
-    const [name, setName] = useState('');
-    const [category, setCategory] = useState('');
-    const [brand, setBrand] = useState('');
-    const [results, setResults] = useState([]);
-  
-    const handleSearch = async () => {
-      try {
-        const params = {};
-        if (name) params.name = name;
-        else if (category) params.category = category;
-        else if (brand) params.brand = brand;
-  
-        const response = await axios.get('https://amazon-devtown-backend.onrender.com/api/product/search', { params });
-        setProducts(response.data);
-      } catch (error) {
-        console.error('Error fetching search results:', error);
-      }
+  const handleSearch = async () => {
+    
+    try {
+      await axios
+        .get(
+          `https://amazon-devtown-backend.onrender.com/api/product/search/${keyword}`
+        )
+        .then((res) => {
+          console.log("search response",res)
+          setProducts(res.data);
+        });
+    } catch (error) {
+      console.error("Error fetching search results:", error);
     }
+  };
 
-    useEffect(()=>{
-       handleSearch() 
-    },[])
+  useEffect(() => {
+    handleSearch();
+  }, []);
 
-  
   const productlowtohigh = async () => {
     try {
       await axios
-        .get("https://amazon-devtown-backend.onrender.com/api/product/price/sort/low_to_high")
+        .get(
+          "https://amazon-devtown-backend.onrender.com/api/product/price/sort/low_to_high"
+        )
         .then((response) => {
           console.log(response);
           setProducts(response.data.products);
@@ -64,7 +59,9 @@ console.log(keyword)
   const produchightolow = async () => {
     try {
       await axios
-        .get("https://amazon-devtown-backend.onrender.com/api/product/price/sort/high_to_low")
+        .get(
+          "https://amazon-devtown-backend.onrender.com/api/product/price/sort/high_to_low"
+        )
         .then((response) => {
           console.log(response);
           setProducts(response.data.products);
@@ -78,7 +75,9 @@ console.log(keyword)
     console.log(brand);
     try {
       await axios
-        .get(`https://amazon-devtown-backend.onrender.com/api/product/search/brand/${brand}`)
+        .get(
+          `https://amazon-devtown-backend.onrender.com/api/product/search/brand/${brand}`
+        )
         .then((response) => {
           console.log(response);
           setProducts(response.data.products);
@@ -92,7 +91,9 @@ console.log(keyword)
     console.log(category);
     try {
       await axios
-        .get(`https://amazon-devtown-backend.onrender.com/api/product/search/category/${category}`)
+        .get(
+          `https://amazon-devtown-backend.onrender.com/api/product/search/category/${category}`
+        )
         .then((response) => {
           console.log(response);
           setProducts(response.data.products);
@@ -102,22 +103,24 @@ console.log(keyword)
     }
   };
 
-  const getProducts = async () => {
-    try {
-      const { data } = await axios.get(
-        "https://amazon-devtown-backend.onrender.com/api/product/list_products"
-      );
-      console.log(data);
-      setProducts(data.products);
-      console.log(products);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getProducts = async () => {
+  //   try {
+  //     const { data } = await axios.get(
+  //       "https://amazon-devtown-backend.onrender.com/api/product/list_products"
+  //     );
+  //     console.log(data);
+  //     setProducts(data.products);
+  //     console.log(products);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    getProducts();
-  }, []);
+  // useEffect(() => {
+  //   getProducts();
+  // }, []);
+
+ 
 
   return (
     <div className="flex gap-10 pt-20">
